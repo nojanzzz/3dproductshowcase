@@ -39,11 +39,8 @@ export default function ConfiguratorUI() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsMinimized(false)}
+            className="minimized-toggle"
             style={{
-              position: "absolute",
-              right: "4vw",
-              top: "5vh",
-              zIndex: 20,
               background: "#111827",
               color: "white",
               border: "none",
@@ -69,24 +66,9 @@ export default function ConfiguratorUI() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50, transition: { duration: 0.3 } }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            style={{
-              position: "absolute",
-              right: "4vw",
-              top: "5vh",
-              background: "rgba(255, 255, 255, 0.2)",
-              backdropFilter: "blur(30px)",
-              WebkitBackdropFilter: "blur(30px)",
-              border: "1px solid rgba(255, 255, 255, 0.4)",
-              padding: "32px",
-              borderRadius: "24px",
-              boxShadow: "0 30px 60px rgba(0,0,0,0.08)",
-              zIndex: 10,
-              width: "310px",
-              maxHeight: "90vh",
-              overflowY: "auto",
-              overflowX: "hidden",
-            }}
+            className="configurator-panel"
           >
+            {/* Header */}
             <div
               style={{
                 marginBottom: "32px",
@@ -151,6 +133,7 @@ export default function ConfiguratorUI() {
               </div>
             </div>
 
+            {/* Parts list */}
             <div
               style={{ display: "flex", flexDirection: "column", gap: "24px" }}
             >
@@ -178,9 +161,7 @@ export default function ConfiguratorUI() {
                     >
                       {part.name}
                     </label>
-                    <div
-                      style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}
-                    >
+                    <div className="color-grid">
                       {colors.map((color) => (
                         <button
                           key={color}
@@ -227,6 +208,7 @@ export default function ConfiguratorUI() {
                 backgroundColor: exploded ? "#ff1a1a" : "#111827",
                 color: "white",
                 border: "none",
+                outline: "none",
                 borderRadius: "16px",
                 fontSize: "14px",
                 fontWeight: 800,
@@ -248,16 +230,6 @@ export default function ConfiguratorUI() {
               />
               {exploded ? "ASSEMBLE KEYBOARD" : "TEARDOWN KEYBOARD"}
             </motion.button>
-
-            {/* CSS internal hack */}
-            <style>{`
-              @keyframes spin { 100% { transform: rotate(360deg); } }
-              .spin-fast { animation: spin 1s linear infinite; }
-              
-              /* Hiding scrollbar logic for neat UI */
-              ::-webkit-scrollbar { width: 4px; }
-              ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 4px; }
-            `}</style>
           </motion.div>
         )}
       </AnimatePresence>
