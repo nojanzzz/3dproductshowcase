@@ -61,7 +61,7 @@ Interact with the showcase using the following controls:
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/3d-product-configurator.git
+    git clone https://github.com/nojanzzz/3d-product-configurator.git
     cd 3d-product-configurator
     ```
 
